@@ -1,22 +1,39 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
+  labels:
+    app.kubernetes.io/instance: apache
   name: apacheset
+  namespace: default
 spec:
-  serviceName: "apache-service"
   replicas: 1
   selector:
     matchLabels:
       app: apache
+  serviceName: apache-service
   template:
     metadata:
+      creationTimestamp: null
       labels:
         app: apache
     spec:
       containers:
-      - name: apache-container
-        image: httpd:alpine
+      - image: httpd:alpine
+        imagePullPolicy: IfNotPresent
+        name: apache-container
         ports:
         - containerPort: 80
-
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  updateStrategy:
+    rollingUpdate:
+      partition: 0
+    type: RollingUpdate
 
