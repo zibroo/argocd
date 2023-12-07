@@ -18,7 +18,7 @@ spec:
         app: apache
     spec:
       containers:
-      - image: httpd:alpine
+      - image: httpd:alpine3.18
         imagePullPolicy: IfNotPresent
         name: apache-container
         ports:
