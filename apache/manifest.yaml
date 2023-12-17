@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: apache-container
-        image: httpd:2.4
+        image: 544528889519.dkr.ecr.us-east-1.amazonaws.com/apache-set:v1.0
         ports:
         - containerPort: 80
