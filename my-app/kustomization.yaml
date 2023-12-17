@@ -1,0 +1,8 @@
+replicas:
+  - name: apache-sts
+    count: 1
+images:
+  - name: 544528889519.dkr.ecr.us-east-1.amazonaws.com/apache-set:v1.0
+    newTag: v1.0
+resources:
+  - ../apache
